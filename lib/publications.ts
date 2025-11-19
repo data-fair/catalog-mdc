@@ -2,7 +2,7 @@ import type { CatalogPlugin } from '@data-fair/types-catalogs'
 import type { MdcConfig } from '#types'
 
 import axios from '@data-fair/lib-node/axios.js'
-import { httpError } from '@data-fair/lib-utils/http-errors.ts'
+import httpError from '@data-fair/lib-utils/http-errors.js'
 
 function datasetPageDesc (dataset: Record<string, any>) {
   const desc = dataset.description ? dataset.description + '\n\n' : ''

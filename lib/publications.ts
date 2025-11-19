@@ -23,7 +23,9 @@ export const publishDataset: CatalogPlugin<MdcConfig>['publishDataset'] = async 
       keyword: [{ id: 'data-fair', title: 'Données Data Fair', type: 'keyword' }]
     }
   }
-  const res = await axios.post(new URL('api/v1/sources', context.catalogConfig.url).href, source, { headers: { 'x-apiKey': context.catalogConfig.apiKey } })
+  const res = await axios.post(
+    new URL('api/v1/sources', context.catalogConfig.url).href,
+    source, { headers: { 'x-apiKey': context.secrets.apiKey } })
   if (!res.data.id || typeof res.data.id !== 'string') {
     throw httpError(501, `Erreur lors de l'envoi à ${context.catalogConfig.url} : le format de retour n'est pas correct.`)
   }

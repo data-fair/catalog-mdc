@@ -1,0 +1,6 @@
+data/
+node_modules/
+config/local-*
+.type/
+.env
+*.tgz

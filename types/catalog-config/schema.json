@@ -1,0 +1,51 @@
+{
+  "$id": "https://github.com/data-fair/catalog-mdc/config",
+  "x-exports": [
+    "types",
+    "validate",
+    "schema"
+  ],
+  "title": "MdcConfig",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "url",
+    "apiKey"
+  ],
+  "properties": {
+    "url": {
+      "type": "string",
+      "title": "URL",
+      "description": "The url of the catalog",
+      "x-i18n-description": {
+        "fr": "L'URL du catalogue"
+      },
+      "pattern": "^https?://.*[^/]$",
+      "errorMessage": "The URL must start with http:// or https:// and must not end with `/`.",
+      "x-i18n-errorMessage": {
+        "fr": "L'URL doit commencer par http:// ou https:// et ne pas se terminer par `/`."
+      }
+    },
+    "apiKey": {
+      "type": "string",
+      "title": "API Key",
+      "x-i18n-title": {
+        "fr": "Clé API"
+      },
+      "layout": {
+        "props": {
+          "type": "password",
+          "autocomplete": "new-password"
+        }
+      }
+    }
+  },
+  "layout": [
+    {
+      "children": [
+        "url",
+        "apiKey"
+      ]
+    }
+  ]
+}

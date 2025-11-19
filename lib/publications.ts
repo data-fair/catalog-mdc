@@ -24,7 +24,7 @@ export const publishDataset: CatalogPlugin<MdcConfig>['publishDataset'] = async 
     }
   }
   const res = await axios.post(
-    new URL('api/v1/sources', context.catalogConfig.url).href,
+    `${context.catalogConfig.url}/api/v1/sources`,
     source, { headers: { 'x-apiKey': context.secrets.apiKey } })
   if (!res.data.id || typeof res.data.id !== 'string') {
     throw httpError(501, `Erreur lors de l'envoi à ${context.catalogConfig.url} : le format de retour n'est pas correct.`)
@@ -32,7 +32,7 @@ export const publishDataset: CatalogPlugin<MdcConfig>['publishDataset'] = async 
   context.publication.remoteFolder = {
     id: source.id,
     title: source.title,
-    url: new URL(`sources/${res.data.id}/view`, context.catalogConfig.url).href
+    url: `${context.catalogConfig.url}/sources/${res.data.id}/view`
   }
   return context.publication
 }

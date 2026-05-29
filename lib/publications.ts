@@ -1,5 +1,6 @@
 import type { CatalogPlugin } from '@data-fair/types-catalogs'
 import type { MdcConfig } from '#types'
+import type { MdcCapabilities } from './capabilities.ts'
 
 import axios from '@data-fair/lib-node/axios.js'
 import httpError from '@data-fair/lib-utils/http-errors.js'
@@ -9,7 +10,7 @@ function datasetPageDesc (dataset: Record<string, any>) {
   return desc + 'Cette source possède un jeu de données consultable dans l\'onglet "Données".'
 }
 
-export const publishDataset: CatalogPlugin<MdcConfig>['publishDataset'] = async (context) => {
+export const publishDataset: CatalogPlugin<MdcConfig, MdcCapabilities>['publishDataset'] = async (context) => {
   const source = {
     id: `df-${context.dataset.id}`, // maybe weird to impose an id, but MDC is not very good with undefined ids
     title: context.dataset.title || context.dataset.file?.name,
@@ -37,6 +38,6 @@ export const publishDataset: CatalogPlugin<MdcConfig>['publishDataset'] = async 
   return context.publication
 }
 
-export const deletePublication: CatalogPlugin<MdcConfig>['deletePublication'] = async (context) => {
+export const deletePublication: CatalogPlugin<MdcConfig, MdcCapabilities>['deletePublication'] = async (context) => {
   if (!context.secrets.apiKey) throw new Error('Source deletion is not supported')
 }

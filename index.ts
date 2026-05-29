@@ -8,11 +8,6 @@ const plugin: CatalogPlugin<MdcConfig, MdcCapabilities> = {
     return prepare(context)
   },
 
-  async list (context) {
-    // this should not be required in our case, a typing problem ?
-    return { count: 0, results: [], path: [] }
-  },
-
   async publishDataset (context) {
     const { publishDataset } = await import('./lib/publications.ts')
     return publishDataset(context)
@@ -25,7 +20,6 @@ const plugin: CatalogPlugin<MdcConfig, MdcCapabilities> = {
 
   metadata: {
     title: 'MyDataCatalogue',
-    description: 'Publiez des jeux de données vers une instance de MyDataCatalogue',
     capabilities
   },
 

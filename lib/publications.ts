@@ -26,7 +26,7 @@ export const publishDataset: CatalogPlugin<MdcConfig, MdcCapabilities>['publishD
   }
   const res = await axios.post(
     `${context.catalogConfig.url}/api/v1/sources`,
-    source, { headers: { 'x-apiKey': context.secrets.apiKey } })
+    source, { headers: { 'x-apiKey': context.secrets.apiKey }, maxRedirects: 0 }) // the custom api key header would survive a cross-host redirect
   if (!res.data.id || typeof res.data.id !== 'string') {
     throw httpError(501, `Error sending to ${context.catalogConfig.url}: the response format is not correct.`)
   }
